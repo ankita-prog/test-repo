@@ -1,0 +1,72 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Feb 20 22:52:51 2022
+
+@author: Rahul Shrivas
+"""
+
+'''Given the price list 
+   1) Tea/Coffee     Rs 15 per cup
+   2) Snacks type I  Rs 30 per plate
+   3) Snacks type II Rs 42 per plate
+   4) Executive Meals Rs 85 per plate
+   5) Spl Meals       Rs 120 per plate
+   ask the user what is needed
+   The input can be like this
+   item the user will type the item number : then qty required and so on
+   finally :B means Bill the items ordered
+   no. item no.
+   |   | 
+   2:3:1:4:B
+     |   |
+     |  how much qty
+     |  needed 
+    how much 
+    qty'''
+print('price list')
+print('1)Tea/Coffee     Rs 15 per cup')
+print(' 2) Snacks type I  Rs 30 per plate')
+print(' 3) Snacks type II Rs 42 per plate')
+print(' 4) Executive M1eals Rs 85 per plate')
+print(' 5) Spl Meals       Rs 120 per plate')
+dict1={}
+bill_amt=0
+
+
+
+bill_menu=''
+while bill_menu!= 'B':
+    menu_item =int(input('what you need from given menu ='))
+    if menu_item in dict1:
+        add_qty = dict1[menu_item]
+        new_qty = int(input('how much quantity u want from given menu ='))
+        dict1[menu_item] = add_qty + new_qty
+    else:
+        dict1[menu_item] =int(input('how much quantity u want from given menu ='))
+    bill_menu =input('press B for bi1ll or press other key for menu items =')
+    
+   
+print(dict1)
+for x, y in dict1.items():
+    if x==1:            
+        bill_amt=bill_amt + (y*15)
+    elif x==2:           
+        bill_amt=bill_amt +(y*30)
+    elif x==3:            
+        bill_amt=bill_amt +(y*42)
+    elif x==4:            
+        bill_amt=bill_amt +(y*85)
+    elif x==5:            
+        bill_amt=bill_amt +(y*120)    
+        
+from datetime import datetime
+now = datetime.now()
+current_time = now.strftime("%H:%M:%S")
+print('no. ', 'Item No.  ', 'How much Qty     ',current_time)
+#for Loop for genrate Bill
+count=1
+for i,j in dict1.items():
+    print(count,'       ', i, '           ', j)
+    count = count +1
+print('-----------------')
+print('Bill Amount ='bill_amt)

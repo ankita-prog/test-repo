@@ -1,0 +1,75 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Feb 20 20:29:15 2022
+
+@author: Rahul Shrivas
+"""
+
+''' Given the electricity bill rates 
+  input the initial meter reading
+  input the final meter reading
+  input the category
+  final - initial is the unit consumed, based on that calculate the 
+  bill. ONLY In domestic catg if the residence has Solar installation then
+  give 10% discount on the bill which is above 2000/-
+
+  for Domestic catg
+     0 to 1000    1.75 per unit 
+   1001 to 2500	  2.50 per unit 
+   2501 to 4500   3.70 per unit 
+   4501 onwards   5.25 per unit
+
+ for Commercial catg
+     0 to 2200    2.75 per unit 
+   2201 to 4500	  3.75 per unit 
+   4501 to 7000   4.90 per unit 
+   7001 onwards   6.40 per unit
+   add 15.5% GST for the bill generated.
+   in commercial catg if the unit consumed is above 8000 then put a fine amount of
+   5% on the bill amount after computing the GST.'''
+def calc_elec_bill():
+    bill_amt=0
+    ini_met_read=int(input('plz enter initial meter reading'))
+    final_read=int(input('plz enter final meter reading'))
+    consumed_reading=final_read-ini_met_read
+    cat=(input('plz enter category'))       
+    solar_install=input('if you have solar installation press Y or N ')
+    if cat=='domestic':
+        if consumed_reading >=0 and consumed_reading<=1000:
+            bill_amt=consumed_reading*1.75
+        elif consumed_reading >=1001 and consumed_reading<=2500:
+            bill_amt=consumed_reading*2.50
+        elif consumed_reading >=2501 and consumed_reading<=4500:
+            bill_amt=consumed_reading*3.70
+        elif consumed_reading >=4501 :
+            bill_amt=consumed_reading*5.25
+            
+        if solar_install == 'Y':
+            bill_amt = bill_amt + ((bill_amt * 10) /100)
+#for commercial reading
+    elif cat=='commercial' :   
+        if consumed_reading >=0 and consumed_reading<=2200:
+            bill_amt=consumed_reading*2.75
+        elif consumed_reading >=2202 and consumed_reading<=4500:
+            bill_amt=consumed_reading*3.75
+        elif consumed_reading >=4501 and consumed_reading<=7000:
+            bill_amt=consumed_reading*4.90
+        elif consumed_reading>=7001 :
+            bill_amt=consumed_reading*6.40
+        
+        
+        bill_amt = bill_amt + ((bill_amt *15.5) /100) 
+        if consumed_reading>=8000 :
+            bill_amt=bill_amt + ((bill_amt *5) /100) 
+            
+
+    return bill_amt       
+            
+print('=========main program')
+print(calc_elec_bill())
+
+           
+       
+       
+       
+       
